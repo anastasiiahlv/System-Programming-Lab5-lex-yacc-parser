@@ -11,12 +11,17 @@ void yyerror(const char *s);
 }
 
 %token <val> NUMBER
-
 %type <val> E
 
 %left '+' '-'
 %left '*' '/' '%'
-%left '(' ')'
+%right UMINUS  // Унарний мінус
+
+%left '<' '>' LE GE
+%left EQ NE
+%left AND OR
+
+%nonassoc '(' ')'
 
 %%
 
@@ -44,7 +49,16 @@ E:
             $$ = (int)$1 % (int)$3;
         }
     }
+  | E '<' E { $$ = $1 < $3; }
+  | E '>' E { $$ = $1 > $3; }
+  | E LE E { $$ = $1 <= $3; }
+  | E GE E { $$ = $1 >= $3; }
+  | E EQ E { $$ = $1 == $3; }
+  | E NE E { $$ = $1 != $3; }
+  | E AND E { $$ = $1 && $3; }
+  | E OR E { $$ = $1 || $3; }
   | '(' E ')' { $$ = $2; }
+  | '-' E %prec UMINUS { $$ = -$2; }
   | NUMBER { $$ = $1; }
 ;
 
@@ -58,4 +72,3 @@ int main() {
 void yyerror(const char *s) {
     fprintf(stderr, "%s\n", s);
 }
-

@@ -445,7 +445,7 @@ char *yytext;
 #line 2 "lexer.l"
 #include <stdio.h>
 #include <stdlib.h>
-#include "y.tab.h"  // підключаємо заголовочний файл для типів з parser.y
+#include "y.tab.h"
 #line 450 "lex.yy.c"
 #line 451 "lex.yy.c"
 
@@ -727,17 +727,17 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 9 "lexer.l"
-{ yylval.val = atof(yytext); return NUMBER; }  // Число з плаваючою точкою
+{ yylval.val = atof(yytext); return NUMBER; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 10 "lexer.l"
-{ yylval.val = atoi(yytext); return NUMBER; }  // Ціле число
+{ yylval.val = atoi(yytext); return NUMBER; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 11 "lexer.l"
-;                                         // Пропустити пробіли і табуляції
+;
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */

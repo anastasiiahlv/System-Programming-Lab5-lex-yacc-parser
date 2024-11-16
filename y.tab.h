@@ -54,7 +54,14 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    NUMBER = 258                   /* NUMBER  */
+    NUMBER = 258,                  /* NUMBER  */
+    UMINUS = 259,                  /* UMINUS  */
+    LE = 260,                      /* LE  */
+    GE = 261,                      /* GE  */
+    EQ = 262,                      /* EQ  */
+    NE = 263,                      /* NE  */
+    AND = 264,                     /* AND  */
+    OR = 265                       /* OR  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -64,6 +71,13 @@ extern int yydebug;
 #define YYerror 256
 #define YYUNDEF 257
 #define NUMBER 258
+#define UMINUS 259
+#define LE 260
+#define GE 261
+#define EQ 262
+#define NE 263
+#define AND 264
+#define OR 265
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -71,9 +85,9 @@ union YYSTYPE
 {
 #line 9 "parser.y"
 
-    double val;  // тип для чисел з плаваючою точкою
+    double val;
 
-#line 77 "y.tab.h"
+#line 91 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
